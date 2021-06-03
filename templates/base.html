@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+
+    <title>{% block title %}{% endblock %}</title>
+
+{#    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css" integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe" crossorigin="anonymous">#}
+    <link rel="stylesheet" href="{% static 'css/bootstrap-rtl.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}">
+	<link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet" />
+{#    <link type="text/css" href="{% static 'css/blog.css' %}" rel="stylesheet" />#}
+    <!-- jQuery and JS bundle w/ Popper.js -->
+{#    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>#}
+{#    <script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.bundle.min.js" integrity="sha384-40ix5a3dj6/qaC7tfz0Yr+p9fqWLzzAXiwxVLt9dw7UjQzGYw6rWRhFAnRapuQyK" crossorigin="anonymous"></script>#}
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<body class="profile-page" data-spy="scroll" data-target=".navbar" data-offset="50">
+<!-- The HEADER -->
+	<header id="header">
+		<!-- Profile Picture -->
+{#		<img id="profilePic" src="{% static 'img/avatar.jpg' %}">#}
+
+	</header>
+
+<!-- sidebar -->
+	<main>
+	<div class="container-fluid">
+        <div class="row">
+        			<div class="col-md-3 col-sm-4 col-xs-12">
+					<!-- navigation side bar + tab -->
+					<ul class="nav nav-pills nav-pills-success nav-stacked">
+						<li class="active"><a data-toggle="pill" href="#about">بیوگرافی</a></li>
+						<li><a href="#">گالری تصاویر</a></li>
+						<li><a href="#">دست نویس</a></li>
+						<li><a href="#">ثبت نظرات</a></li>
+                        	<li><a href="#">گالری تصاویر</a></li>
+						<li><a href="#">دست نویس</a></li>
+						<li><a href="#">ثبت نظرات</a></li>
+                        	<li><a href="#">گالری تصاویر</a></li>
+						<li><a href="#">دست نویس</a></li>
+						<li><a href="#">ثبت نظرات</a></li>
+                        	<li><a href="#">گالری تصاویر</a></li>
+						<li><a href="#">دست نویس</a></li>
+						<li><a href="#">ثبت نظرات</a></li>
+					</ul>
+                </div>
+        <div class="col-md-6 col-sm-8 col-xs-12">
+					<div class="tab-content">
+             {% block content %}
+
+                {% endblock %}
+        </div>
+    </div>
+        </div>
+    </div>
+<!-- page footer -->
+	<footer class="footer">
+		<div class="container">
+			<nav class="pull-left">
+				<div id="share-buttons">
+					<a href="#" target="_blank">
+						<i class="fa fa-facebook-square"></i>
+					</a>
+					<a href="#" target="_blank">
+						<i class="fa fa-twitter-square"></i>
+					</a>
+					<a href="#" target="_blank">
+						<i class="fa fa-instagram"></i>
+					</a>
+					<a href="#" target="_blank">
+						<i class="fa fa-telegram"></i>
+					</a>
+				</div>
+			</nav>
+			<div class="copyright pull-right">
+				translated By َAfshin Shiri ❣</a>.
+			</div>
+		</div>
+	</footer>
+    </body>
+
+</div>
