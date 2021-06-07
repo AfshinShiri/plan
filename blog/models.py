@@ -19,7 +19,8 @@ class Post(models.Model):
     update = models.DateTimeField(auto_now=True)         #tarikhe lahze update
     publish = models.DateTimeField(default=timezone.now) #tarikhe enteshar---timezone lahze knonie enteshar
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default= 'draft')
-    image = models.ImageField(default='default.jpg', blank=True)
+    image = models.ImageField(blank=True)
+    videofile = models.FileField(upload_to='videos/', null=True, verbose_name="video",default="#")
 
     objects = models.Manager() # mangere default
     published = PublishedManager() # manage khodemon
