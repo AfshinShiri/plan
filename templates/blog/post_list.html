@@ -15,7 +15,7 @@
                                  <source src='{{ MEDIA_URL }}{{ post.videofile }}' type='video/mp4'>
                            </video>
                     {% endif %}
-                    <h1><a href="#">{{ post.title }}</a></h1>
+                    <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h1>
                     <p>{{ post.body|truncatewords:10|linebreaks }}</p>
                     <p>{{ post.author }}</p>
                     <p>{{ post.create }}</p>

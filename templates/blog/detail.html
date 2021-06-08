@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}{{post.title}}{% endblock %}
+{% block content %}
+                {% if post.image %}
+                    <img src="{{ MEDIA_URL }}{{ post.image }}" alt="مقاله">
+                    {% else %}
+                           <video  width='300' controls>
+                                 <source src='{{ MEDIA_URL }}{{ post.videofile }}' type='video/mp4'>
+                           </video>
+                    {% endif %}
+<h1> {{post.title}} </h1>
+    <p class="date">
+        published {{post.publish}} by {{post.author}}
+    </p>
+
+    <p class="body-post">
+        {{post.body|linebreaks}}
+    </p>
+
+
+{% endblock %}
