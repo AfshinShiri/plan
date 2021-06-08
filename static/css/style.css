@@ -596,11 +596,36 @@ input{
 .login_view{
     background-color:lightgreen;
     display:block;
-    text-align:center;
-    padding:2em
+    padding:2em;
+}
+.login_view h3{
+    background-color:#1d3e61;
+    color:#fff;
+    padding:1em
 }
 input{
     background-color:aliceblue;
     padding:0.2em;
+    color: black;
 }
+
+@media only screen and (min-width: 768px) {
+    video {
+        width: 50%;
+        margin: 1em 20em 0 0;
+    }
+}
+li{
+    overflow:hidden;
+}
+text{
+    color:black;
+}
+.login_view a{
+    border:2px solid blue;
+    padding:0.7em
+}
+
+
+
 

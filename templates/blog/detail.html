@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block title %}{{post.title}}{% endblock %}
 {% block content %}
+    <div class="col-lg-1 post-detail">
                 {% if post.image %}
-                    <img src="{{ MEDIA_URL }}{{ post.image }}" alt="مقاله">
+                    <img  src="{{ MEDIA_URL }}{{ post.image }}" class="img_detail" alt="مقاله">
                     {% else %}
                            <video  width='300' controls>
                                  <source src='{{ MEDIA_URL }}{{ post.videofile }}' type='video/mp4'>
@@ -16,6 +17,6 @@
     <p class="body-post">
         {{post.body|linebreaks}}
     </p>
-
+</div>
 
 {% endblock %}

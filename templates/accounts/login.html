@@ -1,19 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="col-md-6 col-sm-8 col-xs-12">
+<div class="tab-content">
     <div class="login_view">
-<h3>LOGIN</h3>
+<h3>ورود به سایت</h3>
   <strong>اگر عضو نیستید لطفا</strong>
   <strong>برای ورود ثبت نام کنید</strong>
 <form class="site-form" action="{% url 'accounts:login' %}" method="post">
 
-  {{form}}
+  {{form.as_p}}
   {% csrf_token %}
   {% if request.GET.next %}
     <input type="hidden" name="next" value="{{request.GET.next}}">
   {% endif %}
-  <button type="submit" name="submit">ورود</button>
+  <button class="btn btn-primary btn-lg active" type="submit" name="submit">ورود</button>
   <a class="sabtenam" href="{% url 'accounts:signup' %}">ثبت نام</a>
 </form>
+    </div>
+</div>
     </div>
 {% endblock %}

@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>singup</h3>
-<form class="site-form" action="{% url 'accounts:signup' %}" method="post">
-  {{form}}
+<div class="col-md-6 col-sm-8 col-xs-12">
+<div class="tab-content">
+<form class="login_view" action="{% url 'accounts:signup' %}" method="post">
+<h3>ثبت نام</h3><br>
+  {{form.as_p}}
   {% csrf_token %}
-  <button type="submit" name="submit">signup</button>
+  <button class="btn btn-primary btn-lg active" type="submit" name="submit">ثبت</button>
 </form>
+</div>
+</div>
 {% endblock %}
