@@ -2,11 +2,21 @@
 
 {% block content %}
 <div class="col-md-6 col-sm-8 col-xs-12">
-<div class="tab-content">
+{#<div class="tab-content">#}
 <form class="login_view" action="{% url 'accounts:signup' %}" method="post">
 <h3>ثبت نام</h3><br>
-  {{form.as_p}}
-  {% csrf_token %}
+<p>  ضروری. 150 حرف یا کمتر. نامه ، رقم و @ /. / + / - / / _
+
+
+    {{form.as_p}}
+        <p>رمز ورود شما نمی تواند خیلی شبیه سایر اطلاعات شخصی شما باشد.
+
+رمز ورود شما باید حداقل 8 حرف داشته باشد.
+
+رمز ورود شما نمی تواند یک رمز عبور معمول باشد.
+
+رمز ورود شما نمی تواند کاملاً عددی باشد.</p>
+    {% csrf_token %}
   <button class="btn btn-primary btn-lg active" type="submit" name="submit">ثبت</button>
 </form>
 </div>

@@ -581,10 +581,21 @@ input{
         width: 20em;
         margin:0 1em 0 1em;
     }
+@media only screen and (min-width: 768px){
 .post {
         width: 29em;
         float: right;
         margin: 200px 13px 0 10px;
+        border:1px solid blue;
+}
+}
+.post {
+        border:1px solid blue;
+
+}
+.post img{
+    width:100%;
+    margin:0;
 }
 @media only screen and (min-width: 768px){
     .all_post{
@@ -594,9 +605,10 @@ input{
     }
 }
 .login_view{
-    background-color:lightgreen;
+    background-color:lightskyblue;
     display:block;
     padding:2em;
+    margin-top: 11em;
 }
 .login_view h3{
     background-color:#1d3e61;
@@ -611,8 +623,8 @@ input{
 
 @media only screen and (min-width: 768px) {
     video {
-        width: 50%;
-        margin: 1em 20em 0 0;
+        width: 33%;
+        margin: 11em 10em 0 0;
     }
 }
 li{
@@ -623,8 +635,107 @@ text{
 }
 .login_view a{
     border:2px solid blue;
-    padding:0.7em
+    padding:0.7em;
+    margin-top: 4em;
 }
+p, h1,h2,h3 {
+    color:#fff;
+    padding:0.2em 0.5em 0 0;
+}
+@media only screen and (min-width: 768px) {
+    img{
+        width:50%;
+        margin:11em 0 0 0;
+    }
+}
+.navbar{
+  height:60px
+}
+#exit {
+    background-color:darkred;
+    color:#fff;
+    margin:13px 10px;
+    padding:3px;
+    border-radius:4px;
+    box-shadow:5px 5px darkgray;
+    border:none;
+}
+#exit:hover{
+    margin:15px 8px;
+    box-shadow:none;
+}
+button {
+  padding:6px;
+  background-color:lightskyblue;
+  border: none;
+}
+textarea{
+  color:black;
+}
+#id_username ,#id_password ,#id_password1 ,#id_password2
+label{
+    background-color:rgba(53, 63, 54, 0.95);
+    padding:10px;
+    border-radius:100px
+}
+#vorod{
+
+  padding:12px 20px;
+  border-radius:100px;
+  background-color:black;
+  border:none;
+}
+#vorod:hover{
+  background-color:yellow;
+  color:black;
+}
+button:hover{
+  background-color:yellow;
+  color:black;
+}
+input{
+    background-color:rgba(53, 63, 54, 0.95);
+    color:#fff;
+    border-radius: 3em;
+    padding:10px;
+}
+.form-control{
+    background-color:black;
+    border-radius:100px;
+}
+.helptext {
+  font-size:1em;
+  font-weight:bolder;
+}
+li{
+  color:red;
+}
+#sabt{
+  background-color:#295ab6;
+  color:#fff;
+  margin:13px 25px;
+  padding:3px;
+  border-radius:4px;
+  box-shadow:5px 5px darkgray;
+  border:none;
+}
+#sabt:hover{
+  margin:17px 18px;
+  box-shadow:none;
+}
+.form-control{
+    color: #ffffff;
+}
+h1{
+  border:1px solid blue;
+  background-color:lightskyblue;
+  text-align:center;
+}
+strong{
+    color:darkblue;
+}
+
+
 
 
 

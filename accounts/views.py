@@ -1,16 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
-from .forms import SignupForm
 
 
 def signup_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('blog:post_list')
+            form.save()
+            # user = form.save()
+            # login(request, user)
+            return redirect('accounts:login')
     else:
         form = UserCreationForm()
     return render(request, 'accounts/signup.html', {'form': form})
