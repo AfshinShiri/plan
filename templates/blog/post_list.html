@@ -2,19 +2,23 @@
 {% block title %} blog_page {% endblock %}
 {% block content %}
     <div class="all_post">
-            {% for post in object_list %}
+            {% for post in posts %}
                 <div class="post">
                     <a href="{{ post.get_absolute_url }}">
                     <img src="{{ MEDIA_URL }}{{ post.image }}" alt="مقاله">
                     <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h1>
                     <p>{{ post.body|truncatewords:10|linebreaks }}</p>
-                    <p>{{ post.author }}</p>
-                    <p>{{ post.create }}</p>
+                    <p> نویسنده:{{ post.author }}</p>
+                    <p> منتشر شد:{{ post.create }}</p>
                     </a>
                 </div>
             {% endfor %}
+      {% include 'pagination.html' with page=posts %}
+
             </div>
     </div>
+
     </div>
+
 
 {% endblock %}

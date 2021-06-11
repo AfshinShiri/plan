@@ -38,6 +38,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                       <li><a href="{% url 'blog:post_list' %}">خانه <span class="sr-only">(current)</span></a></li>
+                      <li><a href="{% url 'about' %}">درباره ما <span class="sr-only">(current)</span></a></li>
 
                     <!-- <li class="dropdown"> -->
                         <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -96,16 +97,21 @@
 <!-- The HEADER -->
 	<header id="header">
 		<!-- Profile Picture -->
-{#		<img id="logo" id="profilePic" src="/media/PlanClan.png">#}
+{#		<img src="/media/PlanClan.png">#}
 
 	</header>
 
 <!-- sidebar -->
 	<main>
+
 		<div class="container-fluid">
 			<div class="row">
+
 				<div class="col-md-3 col-sm-4 col-xs-12">
+
 					<ul class="nav nav-pills nav-pills-success nav-stacked">
+
+
 						<li class="active"><a data-toggle="pill" href="#about">بیوگرافی</a></li>
 						<li><a href="#">گالری تصاویر</a></li>
 						<li><a href="#">دست نویس</a></li>
@@ -113,11 +119,13 @@
                         <li><a href="#">گالری تصاویر</a></li>
 						<li><a href="#">دست نویس</a></li>
 						<li><a href="#">ثبت نظرات</a></li>
-
-					</ul>
+		</ul>
                 </div>
+
 {#				<div class="col-md-6 col-sm-8 col-xs-12">#}
 {#					<div class="tab-content">#}
+{#                                 <img class="logo" src="/media/PlanClan.png">#}
+
              {% block content %}
 
                 {% endblock %}
@@ -137,7 +145,7 @@
 					<a href="#" target="_blank">
 						<i class="fa fa-twitter-square"></i>
 					</a>
-					<a href="#" target="_blank">
+					<a href="https://www.instagram.com/p/CPsi0kPgqIV/?utm_source=ig_web_copy_link" target="_blank">
 						<i class="fa fa-instagram"></i>
 					</a>
 					<a href="#" target="_blank">

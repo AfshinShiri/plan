@@ -623,8 +623,8 @@ input{
 
 @media only screen and (min-width: 768px) {
     video {
-        width: 33%;
-        margin: 11em 10em 0 0;
+        width: 35%;
+        margin: 8em 35em 0 0;
     }
 }
 li{
@@ -733,6 +733,28 @@ h1{
 }
 strong{
     color:darkblue;
+}
+span.current{
+  border:1px solid blue;
+  background-color:#fff;
+  font-size:larger;
+  padding:0 1em;
+}
+span a{
+  border:1px solid blue;
+  background-color:#fff;
+  font-size:larger;
+  padding:0.2em 5em;
+}
+.dokme_eshterak img{
+  width:5em;
+  background-color:lightgreen;
+  margin:0;
+
+}
+.dokme_eshterak a{
+  color:lightgreen;
+  font-size:large;
 }
 
 
