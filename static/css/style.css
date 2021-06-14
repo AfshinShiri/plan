@@ -514,6 +514,16 @@ h5{
 }
 }
 
+
+@media only screen and (min-width: 768px) {
+    .maharat {
+        width: 40%
+    }
+
+    .bio {
+        width: 60%
+    }
+}
 .progress-bars{
     margin:auto 0 0 10px;
     width:100%;
@@ -583,7 +593,7 @@ input{
     }
 @media only screen and (min-width: 768px){
 .post {
-        width: 46%;
+        width: 30%;
         float: right;
         margin: 200px 13px 0 10px;
         border:1px solid blue;
@@ -764,6 +774,39 @@ h2{
   background-color:#262927;
   text-align:center;
 }
+@media only screen and (min-width: 768px){
+img.img_detail{
+  width:60%
+}
+}
+
+@media only screen and (max-width: 375px){
+img.img_detail{
+  width:100%
+}
+}
+
+nav{
+    background-color: #333333;
+}
+nav ul ul {
+	display: none;
+}
+nav ul li:hover > ul {
+	display: block;
+    background-color: #333333;
+    padding: 2em;
+}
+
+nav ul li:hover > ul li {
+    font-size: larger;
+    border:1px solid skyblue;
+    padding: 1em;
+
+}
+
+
+
 
 
 

@@ -40,7 +40,11 @@
                 <ul class="nav navbar-nav">
                       <li><a href="{% url 'blog:post_list' %}">خانه <span class="sr-only">(current)</span></a></li>
                       <li><a href="{% url 'about' %}">درباره ما <span class="sr-only">(current)</span></a></li>
-
+                      <li><a href="#">جدیدترین آموزش ها</a>
+                            <ul>
+                                {% latest_post %}
+			                </ul>
+                      </li>
                     <!-- <li class="dropdown"> -->
                         <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">پشتیبانی<span class="caret"></span></a> -->
@@ -108,23 +112,29 @@
 		<div class="container-fluid">
 			<div class="row">
 
-				<div class="col-md-3 col-sm-4 col-xs-12">
-
-					<ul class="nav nav-pills nav-pills-success nav-stacked">
-                        <h2>صفحات سایت</h2>
-						<li><a data-toggle="pill" href="#about">بیوگرافی</a></li>
-						<li><a href="#">گالری تصاویر</a></li>
-						<li><a href="#">دست نویس</a></li>
-                        {% latest_post %}
-		            </ul>
-
-                </div>
+{#            				<div class="col-md-3 col-sm-4 col-xs-12">#}
+{##}
+{#					<ul class="nav nav-pills nav-pills-success nav-stacked">#}
+{#                        <h2>صفحات سایت</h2>#}
+{#						<li><a data-toggle="pill" href="#about">بیوگرافی</a></li>#}
+{#						<li><a href="#">گالری تصاویر</a></li>#}
+{#						<li><a href="#">دست نویس</a>#}
+{#                            <ul>#}
+{#				                <li><a href="#">وردپرس</a></li>#}
+{#				                <li><a href="#">جوملا</a></li>#}
+{#                                <li><a href="#">متفرقه</a></li>#}
+{#			                </ul>#}
+{#                        </li>#}
+{#                        {% latest_post %}#}
+{#		            </ul>#}
+{#                </div>#}
 
 
 
              {% block content %}
 
                 {% endblock %}
+
         </div>
     </div>
 {#        </div>#}
