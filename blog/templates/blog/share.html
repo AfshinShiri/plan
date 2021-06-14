@@ -1,19 +1,20 @@
 {% extends "base.html" %}
 {% block title %} اشتراک گذاری {% endblock %}
 {% block content %}
-    <h1> ممنون </h1>
+    <div class="col-md-6 col-sm-8 col-xs-12">
     {% if sent %}
         <h1>اشتراک گذاری با موفقیت انجام شد</h1>
         <p>
             "{{post.title}}" با موفقیت ارسال شد به {{form.cleaned_data.to}}.
         </p>
+        <a href="{% url 'blog:post_list' %}"> برای بازگشت به صفحه اصلی کلیک کنید</a>
     {% else %}
         <h2>اشتراک پست "{{post.title}}" با ایمیل</h2>
-        <p> </p>
-        <form class="form-email" method="post">
-            {{form}}
+        <form class="login_view" method="post">
+            {{form.as_p}}
             {% csrf_token %}
             <input type="submit" value="Send-Email">
         </form>
     {% endif %}
+    </div>
 {% endblock %}

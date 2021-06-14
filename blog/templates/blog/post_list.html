@@ -25,10 +25,11 @@
 
 
             </div>
-    {% include 'pagination.html' with page=posts %}
-    </div>
 
     </div>
 
-
+    </div>
+    <div class="paginator">
+     {% include 'pagination.html' with page=posts %}
+    </div>
 {% endblock %}

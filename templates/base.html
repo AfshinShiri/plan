@@ -1,4 +1,5 @@
 {% load static %}
+{% load blog_tags %}
 <!DOCTYPE html>
 <html dir="rtl">
 <head>
@@ -110,21 +111,16 @@
 				<div class="col-md-3 col-sm-4 col-xs-12">
 
 					<ul class="nav nav-pills nav-pills-success nav-stacked">
-
-
-						<li class="active"><a data-toggle="pill" href="#about">بیوگرافی</a></li>
+                        <h2>صفحات سایت</h2>
+						<li><a data-toggle="pill" href="#about">بیوگرافی</a></li>
 						<li><a href="#">گالری تصاویر</a></li>
 						<li><a href="#">دست نویس</a></li>
-						<li><a href="#">ثبت نظرات</a></li>
-                        <li><a href="#">گالری تصاویر</a></li>
-						<li><a href="#">دست نویس</a></li>
-						<li><a href="#">ثبت نظرات</a></li>
-		</ul>
+                        {% latest_post %}
+		            </ul>
+
                 </div>
 
-{#				<div class="col-md-6 col-sm-8 col-xs-12">#}
-{#					<div class="tab-content">#}
-{#                                 <img class="logo" src="/media/PlanClan.png">#}
+
 
              {% block content %}
 

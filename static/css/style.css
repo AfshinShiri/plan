@@ -583,7 +583,7 @@ input{
     }
 @media only screen and (min-width: 768px){
 .post {
-        width: 29em;
+        width: 46%;
         float: right;
         margin: 200px 13px 0 10px;
         border:1px solid blue;
@@ -601,7 +601,6 @@ input{
     .all_post{
         display:flex;
         flex-wrap: wrap;
-
     }
 }
 .login_view{
@@ -731,20 +730,17 @@ h1{
   background-color:lightskyblue;
   text-align:center;
 }
-strong{
-    color:darkblue;
-}
 span.current{
   border:1px solid blue;
   background-color:#fff;
   font-size:larger;
-  padding:0 1em;
+  padding:0.1em 0.2em 0 0;
 }
 span a{
   border:1px solid blue;
   background-color:#fff;
   font-size:larger;
-  padding:0.2em 5em;
+  padding:0.2em 1em;
 }
 .dokme_eshterak img{
   width:5em;
@@ -759,6 +755,17 @@ span a{
 .comment{
     border:1px solid #ffffff;
 }
+h2{
+  background-color:#337ab7;
+  padding:0.3em;
+  border-radius:0.1em;
+}
+.paginator{
+  background-color:#262927;
+  text-align:center;
+}
+
+
 
 
 
