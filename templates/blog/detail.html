@@ -18,6 +18,18 @@
         <p class="date">
         منتشر شد: {{post.publish}} توسط:{{post.author}}
     </p>
+
+    <p class="tags">
+                Tags:
+                {% for tag in post.tags.all %}
+                    <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+                        {{tag.name}}
+                    </a>
+                {% if not forloop.last %}, {%endif%}
+                {% endfor %}
+            </p>
+
+
 </div>
     <p class="dokme_eshterak">
     <a href="{% url 'blog:post_share' post.id %}">
@@ -25,5 +37,34 @@
         اشتراک گذاری این پست
     </a>
     </p>
+
+    {% with comments.count as total_comment %}
+        <h2 class="total_comments">
+            {{ total_comments }} نظرها
+        </h2>
+    {% endwith %}
+    {% for comment in comments %}
+        <div class="comment">
+            <p class="comment_info">
+                نظر {{ forloop.counter }} با {{ comment.name }} {{comment.created}}
+            </p>
+            <p class="comment_body">{{ comment.body|linebreaks }}</p>
+        </div>
+    {% empty %}
+        <p class="comment_first"> اولین نظر را شما بدید</p>
+    {% endfor %}
+
+    {% if new_comment %}
+        <h2> نظر شما ثبت شد با تشکر </h2>
+    {% else %}
+
+        <form class="login_view" method="post">
+        <h2 class="Addnew_comment">نظر دهید</h2><hr>
+        {{ comment_form.as_p }}
+        {% csrf_token %}
+        <input class="button_formComment" type="submit" value="ثبت نظر">
+        </form>
+    {% endif %}
+
 
 {% endblock %}

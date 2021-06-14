@@ -1,15 +1,20 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Post, Comment
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import EmailPostForm
+from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
+from taggit.models import Tag
 
 
 
-
-def post_list(request):
+def post_list(request, tag_slug=None):
     object_list = Post.published.all()
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        object_list = object_list.filter(tags__in=[tag])
+
     paginator = Paginator(object_list, 4)
     page = request.GET.get('page')
     try:
@@ -18,7 +23,8 @@ def post_list(request):
         posts = paginator.page(1)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
-    return render(request, 'blog/post_list.html', {'posts': posts, 'page': page})
+    return render(request, 'blog/post_list.html', {'posts': posts, 'page': page, 'tag': tag})
+
 
 @login_required(login_url="/accounts/login")
 def post_detail(request, year, month, day, post):
@@ -28,7 +34,21 @@ def post_detail(request, year, month, day, post):
                              publish__year=year,
                              publish__month=month,
                              publish__day=day, )
-    return render(request, 'blog/detail.html', {'post': post})
+
+    # comment
+    comments = post.comments.filter(active=True)
+    new_comment = None
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+    return render(request, 'blog/detail.html', {'post': post, 'comment_form': comment_form,
+                                                'comments': comments, 'new_comment': new_comment})
+
 
 def post_share(request,post_id):
     post = get_object_or_404(Post, id=post_id,status='published')

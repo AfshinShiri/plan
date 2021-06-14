@@ -756,6 +756,9 @@ span a{
   color:lightgreen;
   font-size:large;
 }
+.comment{
+    border:1px solid #ffffff;
+}
 
 
 
