@@ -40,11 +40,6 @@
                 <ul class="nav navbar-nav">
                       <li><a href="{% url 'blog:post_list' %}">خانه <span class="sr-only">(current)</span></a></li>
                       <li><a href="{% url 'about' %}">درباره ما <span class="sr-only">(current)</span></a></li>
-                      <li><a href="#">جدیدترین آموزش ها</a>
-                            <ul>
-                                {% latest_post %}
-			                </ul>
-                      </li>
                     <!-- <li class="dropdown"> -->
                         <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">پشتیبانی<span class="caret"></span></a> -->
@@ -139,6 +134,22 @@
     </div>
 {#        </div>#}
 {#        </div>#}
+    <hr><hr>
+    		<div class="container-fluid">
+			<div class="row">
+            <h2>جدیدترین آموزش های سایت</h2>
+    <div class="latest_post">
+     {% for post in latest_post %}
+         <div class="item_latest_post">
+            <a href="{{ post.get_absolute_url }}">
+                <img  src="{{ MEDIA_URL }}{{ post.image }}" class="img_detail" alt="مقاله">
+                 {{ post.title }}
+            </a>
+         </div>
+    {% endfor %}
+    </div>
+            </div>
+            </div>
 
 <!-- page footer -->
 	<footer class="footer">

@@ -3,6 +3,8 @@
         <li>
             <a href="{{ post.get_absolute_url }}">
                  {{ post.title }}
+                <img  src="{{ MEDIA_URL }}{{ post.image }}" class="img_detail" alt="مقاله">
+
             </a>
         </li>
     {% endfor %}

@@ -67,5 +67,21 @@
         </form>
     {% endif %}
 
+     <hr>
+
+        <h2>پست های مرتبط</h2>
+       <div class="latest_post">
+    {% for post in similar_post %}
+        <div class="item_latest_post">
+
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}
+                <img  src="{{ MEDIA_URL }}{{ post.image }}" class="img_detail" alt="مقاله">
+            </a>
+        </div>
+    {% empty %}
+        <p>مطالب مرتبتی وجود ندارد</p>
+    {% endfor %}
+       </div>
+
 
 {% endblock %}

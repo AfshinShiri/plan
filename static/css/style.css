@@ -802,8 +802,33 @@ nav ul li:hover > ul li {
     font-size: larger;
     border:1px solid skyblue;
     padding: 1em;
+}
+
+@media only screen and (min-width: 768px){
+.latest_post{
+  display:flex;
+  justify-content:space-between;
+}
+.item_latest_post{
+  width:20%;
+  border:1px solid blue;
 
 }
+}
+
+.item_latest_post a{
+  width:100%;
+  background-color:aqua;
+  display:block
+}
+.item_latest_post img{
+  width:100%;
+  background-color:aqua;
+  display:block;
+  margin-top:0;
+}
+
+
 
 
 
