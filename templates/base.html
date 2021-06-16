@@ -40,29 +40,15 @@
                 <ul class="nav navbar-nav">
                       <li><a href="{% url 'blog:post_list' %}">خانه <span class="sr-only">(current)</span></a></li>
                       <li><a href="{% url 'about' %}">درباره ما <span class="sr-only">(current)</span></a></li>
-                    <!-- <li class="dropdown"> -->
-                        <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">پشتیبانی<span class="caret"></span></a> -->
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="جستجو">
-                    </div>
-                    <button type="submit" class="button">
-                        <!-- <i class="glyphicon glyphicon-search"></i> -->
-                        بیاب
-                    </button>
-                </form>
+            <form class="navbar-form navbar-left" method="get">
+                <div class="form-group">
+                    {{form}}
+                </div>
+                <input id="button_search" type="submit" value="Search">
+            </form>
+
                 <!-- -------------------------------------------------------------- -->
 
 
@@ -79,17 +65,6 @@
                     <button id="sabt" type="submit">ورود و ثبت نام</button>
                   </form>
                       {% endif %}
-                    <!-- <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">دسته بندی<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li> -->
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -97,7 +72,7 @@
 <!-- The HEADER -->
 	<header id="header">
 		<!-- Profile Picture -->
-{#		<img src="/media/PlanClan.png">#}
+{#
 
 	</header>
 
@@ -107,33 +82,13 @@
 		<div class="container-fluid">
 			<div class="row">
 
-{#            				<div class="col-md-3 col-sm-4 col-xs-12">#}
-{##}
-{#					<ul class="nav nav-pills nav-pills-success nav-stacked">#}
-{#                        <h2>صفحات سایت</h2>#}
-{#						<li><a data-toggle="pill" href="#about">بیوگرافی</a></li>#}
-{#						<li><a href="#">گالری تصاویر</a></li>#}
-{#						<li><a href="#">دست نویس</a>#}
-{#                            <ul>#}
-{#				                <li><a href="#">وردپرس</a></li>#}
-{#				                <li><a href="#">جوملا</a></li>#}
-{#                                <li><a href="#">متفرقه</a></li>#}
-{#			                </ul>#}
-{#                        </li>#}
-{#                        {% latest_post %}#}
-{#		            </ul>#}
-{#                </div>#}
-
-
-
              {% block content %}
 
                 {% endblock %}
 
         </div>
     </div>
-{#        </div>#}
-{#        </div>#}
+
     <hr><hr>
     		<div class="container-fluid">
 			<div class="row">
@@ -150,31 +105,63 @@
     </div>
             </div>
             </div>
-
+{#----------------------------------------------------------------------------------------------------------------#}
+       <hr><hr>
+    		<div class="container-fluid">
+			<div class="row">
+            <h2>پست هایی بیش ترین نظر</h2>
+    <div class="latest_post">
+     {% for post in get_most_commented_posts %}
+         <div class="item_latest_post">
+            <a href="{{ post.get_absolute_url }}">
+                <img  src="{{ MEDIA_URL }}{{ post.image }}" class="img_detail" alt="مقاله">
+                 {{ post.title }}
+            </a>
+         </div>
+    {% endfor %}
+    </div>
+            </div>
+            </div>
 <!-- page footer -->
+    <hr><hr>
+        		<div class="container-fluid">
+			<div class="row">
+                <h2>تماس با ما</h2>
 	<footer class="footer">
 		<div class="container">
 			<nav class="pull-left">
 				<div id="share-buttons">
 					<a href="#" target="_blank">
-						<i class="fa fa-facebook-square"></i>
-					</a>
-					<a href="#" target="_blank">
-						<i class="fa fa-twitter-square"></i>
+						<i class="fa fa-twitter-square">توییتر ما</i>
 					</a>
 					<a href="https://www.instagram.com/p/CPsi0kPgqIV/?utm_source=ig_web_copy_link" target="_blank">
-						<i class="fa fa-instagram"></i>
+						<i class="fa fa-instagram"> اینستاگرام ما</i>
 					</a>
 					<a href="#" target="_blank">
-						<i class="fa fa-telegram"></i>
+						<i class="fa fa-telegram">تلگرام ما</i>
 					</a>
 				</div>
 			</nav>
+            <div class="logom">
+                <i src="/media/PlanClan.png"></i>
+            </div>
 			<div class="copyright pull-right">
-				translated By َAfshin Shiri ❣</a>.
+				translated By َAfshin Shiri ❣
+                <hr>
+                tell       :       0912 60 90 600
+
+                <hr>
+                E-mail     :       planclanir@gmail.com
+
 			</div>
+                <p>
+                    <a href="{% url "blog:post_feed" %}">Subscribe to my RSS feed</a>
+                </p>
 		</div>
 	</footer>
+                </div>
+                </div>
+    </main>
     </body>
 
-</div>
+

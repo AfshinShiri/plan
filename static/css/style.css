@@ -768,7 +768,7 @@ span a{
 h2{
   background-color:#337ab7;
   padding:0.3em;
-  border-radius:0.1em;
+  border-radius:0.1em;text-align:center;
 }
 .paginator{
   background-color:#262927;
@@ -827,7 +827,22 @@ nav ul li:hover > ul li {
   display:block;
   margin-top:0;
 }
+#share-buttons a i{
+  display:block;
+  padding:2em;
 
+}
+.copyright{
+  background-color:brown;
+  color:#fff;
+  padding:1em;
+  margin:1em;
+
+}
+#button_search{
+      background-color:brown;
+
+}
 
 
 

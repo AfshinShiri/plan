@@ -1,17 +1,30 @@
 {%  extends "base.html" %}
 {%  load static%}
+{% load blog_tags %}
 {% block title %}
    درباره ی ما
 {% endblock %}
 {% block content %}
+        {% if query %}
+    <h1>نتیجه ی جست و جو"{{ query }}"</h1>
+    <h3>
+        {% with result.count as total_result %}
+            پیدا شد {{ total_result }}
+        {% endwith %}
+    </h3>
+
+        {% for post in results %}
+            <h4><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h4>
+                {{ post.body|markdown|truncatewords_html:5}}
+
+        {% empty %}
+                <h2>جستجو مورد نظر یافت نشد</h2>
+        {% endfor %}
+    {% else %}
 <div class="col-md-6 col-sm-8 col-xs-12 bio">
 <div class="tab-content">
 
-<!-- sidebar -->
-				<!-- start tab content -->
-{#				<div class="col-md-6 col-sm-8 col-xs-12">#}
-{#					<div class="tab-content">#}
-						<!-- about -->
+
 						<div id="about" class="tab-pane fade in active">
 							<h3>بیوگرافی</h3>
 							<p><span><i class="fa fa-user-circle"></i><strong>نام:</strong></span> افشین شیری </p>
@@ -23,9 +36,6 @@
 						</div>
                     </div>
 </div>
-
-
-
 
 				<!-- Skill -->
 
@@ -106,5 +116,6 @@
 								</div>
 			    </section>
 					</div>
+    {% endif %}
 
 {% endblock %}

@@ -1,14 +1,34 @@
 {% extends 'base.html' %}
+{% load blog_tags %}
 {% block title %} صفحه اصلی {% endblock %}
 {% block content %}
+    {% if query %}
+    <h1>نتیجه ی جست و جو"{{ query }}"</h1>
+    <h3>
+        {% with result.count as total_result %}
+            پیدا شد {{ total_result }}
+        {% endwith %}
+    </h3>
+
+        {% for post in results %}
+            <h4><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h4>
+                {{ post.body|markdown|truncatewords_html:5}}
+
+        {% empty %}
+                <h2>جستجو مورد نظر یافت نشد</h2>
+        {% endfor %}
+    {% else %}
+        <h2>لیست تمامی اموزش ها</h2>
+
     <div class="all_post">
+
 
             {% for post in posts %}
                 <div class="post">
                     <a href="{{ post.get_absolute_url }}">
                     <img src="{{ MEDIA_URL }}{{ post.image }}" alt="مقاله">
                     <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h1>
-                    <p>{{ post.body|truncatewords:10|linebreaks }}</p>
+                    <p>{{ post.body| markdown |truncatewords:10 }}</p>
                     <p> نویسنده:{{ post.author }}</p>
                     <p> منتشر شد:{{ post.create }}</p>
                     </a>
@@ -33,4 +53,5 @@
     <div class="paginator">
      {% include 'pagination.html' with page=posts %}
     </div>
+   {% endif %}
 {% endblock %}
