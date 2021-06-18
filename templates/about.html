@@ -9,17 +9,20 @@
     <h1>نتیجه ی جست و جو"{{ query }}"</h1>
     <h3>
         {% with result.count as total_result %}
-            پیدا شد {{ total_result }}
+              {{ total_result }}
         {% endwith %}
     </h3>
-
+    <div class="latest_post">
         {% for post in results %}
+             <div class="item_latest_post">
             <h4><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h4>
+              <img src="{{ MEDIA_URL }}{{ post.image }}" alt="مقاله">
                 {{ post.body|markdown|truncatewords_html:5}}
-
+             </div>
         {% empty %}
                 <h2>جستجو مورد نظر یافت نشد</h2>
         {% endfor %}
+    </div>
     {% else %}
 <div class="col-md-6 col-sm-8 col-xs-12 bio">
 <div class="tab-content">

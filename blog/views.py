@@ -6,7 +6,7 @@ from .forms import EmailPostForm, CommentForm, SearchForm
 from django.core.mail import send_mail
 from taggit.models import Tag
 from django.db.models import Count
-from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank, TrigramSimilarity
 
 
 def post_list(request, tag_slug=None):
@@ -17,15 +17,23 @@ def post_list(request, tag_slug=None):
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
         object_list = object_list.filter(tags__in=[tag])
-
-    form = SearchForm()
+ #search
+    formSearch = SearchForm()
     query = None
     results = []
     if 'query' in request.GET:
-        form = SearchForm(request.GET)
-        if form.is_valid():
-            query = form.cleaned_data['query']
-            results = Post.published.annotate(search=SearchVector('title', 'body'), ).filter(search=query)
+        formSearch = SearchForm(request.GET)
+        if formSearch.is_valid():
+            query = formSearch.cleaned_data['query']
+
+            search_query = SearchQuery(query)
+            search_vector = SearchVector('title', weight='A') + SearchVector('body', weight='B')
+            # similarity = TrigramSimilarity('title', 'query').filter(similarity__gt=0.1).order_by('-similarity')
+            # result = Post.published.annotate(similarity=TrigramSimilarity('title', query), ).filter(
+            #     similarity__gt=0.1).order_by('-similarity')
+            results = Post.published.annotate(search=search_vector, rank=SearchRank(search_vector, search_query),) \
+                .filter(search=search_query).order_by('-rank')
+
 
     paginator = Paginator(object_list, 3)
     page = request.GET.get('page')
@@ -38,7 +46,7 @@ def post_list(request, tag_slug=None):
     return render(request, 'blog/post_list.html', {'posts': posts, 'page': page, 'tag': tag,
                                                    'latest_post': latest_post,
                                                    'get_most_commented_posts': get_most_commented_posts,
-                                                   'form': form, 'query': query, 'results': results})
+                                                   'formSearch': formSearch, 'query': query, 'results': results})
 
 
 @login_required(login_url="/accounts/login")
@@ -69,22 +77,28 @@ def post_detail(request, year, month, day, post):
     else:
         comment_form = CommentForm()
 
-    #search
-    form = SearchForm()
+        # search
+    formSearch = SearchForm()
     query = None
     results = []
     if 'query' in request.GET:
-        form = SearchForm(request.GET)
-        if form.is_valid():
-            query = form.cleaned_data['query']
-            results = Post.published.annotate(search=SearchVector('title', 'body'), ).filter(search=query)
+        formSearch = SearchForm(request.GET)
+        if formSearch.is_valid():
+            query = formSearch.cleaned_data['query']
 
+            search_query = SearchQuery(query)
+            search_vector = SearchVector('title', weight='A') + SearchVector('body', weight='B')
+            # similarity = TrigramSimilarity('title', 'query').filter(similarity__gt=0.1).order_by('-similarity')
+            # result = Post.published.annotate(similarity=TrigramSimilarity('title', query), ).filter(
+            #     similarity__gt=0.1).order_by('-similarity')
+            results = Post.published.annotate(search=search_vector, rank=SearchRank(search_vector, search_query), ) \
+                .filter(search=search_query).order_by('-rank')
     return render(request, 'blog/detail.html', {'post': post, 'comment_form': comment_form,
                                                 'comments': comments, 'new_comment': new_comment,
                                                 'similar_post': similar_post,
                                                 'latest_post': latest_post,
                                                 'get_most_commented_posts': get_most_commented_posts,
-                                                'form': form, 'query': query, 'results': results})
+                                                'formSearch': formSearch, 'query': query, 'results': results})
 
 
 def post_share(request, post_id):
@@ -100,12 +114,30 @@ def post_share(request, post_id):
 
             message = f"Read {post.title} at {post_url}\n\n" \
                       f"{cd['name']} comments:{cd['comments']}"
-            send_mail(subject, message, "mysite@info.com", [cd['to']])
+            send_mail(subject, message, "https://planclan.ir", [cd['to']])
             sent = True
 
     else:
         form = EmailPostForm()
-    return render(request, 'blog/share.html', {'form': form, 'post': post, 'sent': sent})
+
+    # search
+    formSearch = SearchForm()
+    query = None
+    results = []
+    if 'query' in request.GET:
+        formSearch = SearchForm(request.GET)
+        if formSearch.is_valid():
+            query = formSearch.cleaned_data['query']
+
+            search_query = SearchQuery(query)
+            search_vector = SearchVector('title', weight='A') + SearchVector('body', weight='B')
+                # similarity = TrigramSimilarity('title', 'query').filter(similarity__gt=0.1).order_by('-similarity')
+                # result = Post.published.annotate(similarity=TrigramSimilarity('title', query), ).filter(
+                #     similarity__gt=0.1).order_by('-similarity')
+            results = Post.published.annotate(search=search_vector, rank=SearchRank(search_vector, search_query), ) \
+                            .filter(search=search_query).order_by('-rank')
+    return render(request, 'blog/share.html', {'form': form, 'post': post, 'sent': sent,
+                                               'formSearch': formSearch, 'query': query, 'results': results})
 
 # def post_search(request):
 #     form = SearchForm()

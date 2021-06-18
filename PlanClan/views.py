@@ -7,13 +7,13 @@ from blog.forms import SearchForm
 def about(request):
 
     #search
-    form = SearchForm()
+    formSearch = SearchForm()
     query = None
     results = []
     if 'query' in request.GET:
-        form = SearchForm(request.GET)
-        if form.is_valid():
-            query = form.cleaned_data['query']
+        formSearch = SearchForm(request.GET)
+        if formSearch.is_valid():
+            query = formSearch.cleaned_data['query']
             results = Post.published.annotate(search=SearchVector('title', 'body'), ).filter(search=query)
 
-    return render(request, 'about.html', {'form': form, 'query': query, 'results': results})
+    return render(request, 'about.html', {'formSearch': formSearch, 'query': query, 'results': results})

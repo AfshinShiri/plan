@@ -2,23 +2,29 @@
 {% load blog_tags %}
 {% block title %} صفحه اصلی {% endblock %}
 {% block content %}
+
     {% if query %}
+
     <h1>نتیجه ی جست و جو"{{ query }}"</h1>
     <h3>
         {% with result.count as total_result %}
-            پیدا شد {{ total_result }}
+            نتیجه جست جو :{{ total_result }}
         {% endwith %}
     </h3>
-
+    <div class="latest_post">
         {% for post in results %}
-            <h4><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h4>
+             <div class="item_latest_post">
+            <h4><a href="{{post.get_absolute_url}}">{{ post.title }}</h4>
+                <img src="{{ MEDIA_URL }}{{ post.image }}" alt="مقاله">
                 {{ post.body|markdown|truncatewords_html:5}}
-
+            </a>
+          </div>
         {% empty %}
                 <h2>جستجو مورد نظر یافت نشد</h2>
         {% endfor %}
+
     {% else %}
-        <h2>لیست تمامی اموزش ها</h2>
+    
 
     <div class="all_post">
 

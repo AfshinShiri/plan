@@ -1,6 +1,29 @@
 {% extends "base.html" %}
+{% load blog_tags %}
 {% block title %} اشتراک گذاری {% endblock %}
 {% block content %}
+
+    {% if query %}
+
+    <h1>نتیجه ی جست و جو"{{ query }}"</h1>
+    <h3>
+        {% with result.count as total_result %}
+            نتیجه جست جو :{{ total_result }}
+        {% endwith %}
+    </h3>
+    <div class="latest_post">
+        {% for post in results %}
+             <div class="item_latest_post">
+            <h4><a href="{{post.get_absolute_url}}">{{ post.title }}</h4>
+                <img src="{{ MEDIA_URL }}{{ post.image }}" alt="مقاله">
+                {{ post.body|markdown|truncatewords_html:5}}
+            </a>
+          </div>
+        {% empty %}
+                <h2>جستجو مورد نظر یافت نشد</h2>
+        {% endfor %}
+
+    {% else %}
     <div class="col-md-6 col-sm-8 col-xs-12">
     {% if sent %}
         <h1>اشتراک گذاری با موفقیت انجام شد</h1>
@@ -17,4 +40,5 @@
         </form>
     {% endif %}
     </div>
+    {% endif %}
 {% endblock %}
